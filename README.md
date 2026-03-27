@@ -16,7 +16,7 @@ It includes:
 
 ## 🏗 Architecture
 
-![VPC Architecture](images/architecture.png)
+![image](terraform-aws-vpc/assets/88663911/d3053c41-4a02-450d-9938-a575740a71e1)
 
 ---
 
