@@ -1,59 +1,144 @@
-# Custom AWS VPC Module
+# 🌐 Terraform AWS VPC – Production-Ready Infrastructure
 
-![image](https://github.com/Sathish278/terraform-aws-vpc/assets/88663911/d3053c41-4a02-450d-9938-a575740a71e1)
+## 📌 Overview
 
-This module is for sathish practice devops
-I am creating following resources. This module creates resources in first 2 AZ for HA.
+This project provisions a **highly available and production-grade AWS VPC infrastructure** using Terraform.
 
-* VPC
-* Internet gateway(IGW)
-* Internet and VPC attachment
-* 2 Public Subnets.
-* 2 Private Subnes
-* 2 Database Subnets
-* Public subnet
-* Private subnet
-* Database subnet
-* Elastic IP(EIP)
-* NAT gateway(NAT)
-* Public Route table(RT)
-* private Route table(RT)
-* Database Route table(RT)
-* Routes
-* Route table and subnet association
-* VPC Peering
-* for VPC routing from default vpc to main and vice versa
-* Routes of peering in requestor and acceptor VPC.
-* Database sunet group
+It includes:
 
-# Inputs
-* project_name (Required): User should mention their project name. Type is string.
-* environment (Optional): Default value is dev. Type is string.
-* common_tags (Required): User should provide their tags related to their project. Type is map.
-* vpc_cidr (Optional): Default value is 10.0.0.0/16. Type is string.
-* enable_dns_hostnames (Optional): Default value is true. Type is bool.
-* vpc_tags (Optional): Default value is empty. Type is map.
-* igw_tags (Optional): Default value is empty. Type is map.
-* public_subnet_cidrs (Required): User has to provide 2 valid subnet CIDR.
-* public_subnet_cidr_tags (Optional): Default value is empty. Type is map.
-* private_subnet_cidrs (Required): User has to provide 2 valid subnet CIDR.
-* private_subnet_cidr_tags (Optional): Default value is empty. Type is map.
-* database_subnet_cidrs (Required): User has to provide 2 valid subnet CIDR.
-* database_subnet_cidr_tags (Optional): Default value is empty. Type is map.
-* database_subnet_group_tags (Optional): Default value is empty. Type is map.
-* nat_gateway_tags (Optional): Default value is empty. Type is map.
-* public_route_table_tags (Optional): Default value is empty. Type is map.
-* private_route_table_tags (Optional): Default value is empty. Type is map.
-* database_route_table_tags (Optional): Default value is empty. Type is map.
-* is_peering_required (Optional): Default value is false. Type is bool.
-* acceptor_vpc_id (Optional): Default value is empty, default VPC ID would be taken. Type is string.
-* vpc_peering_tags (Optional): Default value is empty. Type is map.
+* Multi-AZ architecture
+* Public, Private, and Database subnets
+* Internet Gateway & NAT Gateway
+* Route Tables & Associations
+* VPC Peering setup
 
-# Outputs
+---
 
-* vpc_id: VPC ID
-* public_subnet_ids: A list of 2 public subnet IDS created.
-* database_subnet_ids: A list of 2 database subnet IDS created.
-* private_subnet_ids: A list of 2 private subnet IDS created.
-* database_subnet_group_id: A database subnet group ID created.
-* igw_id: internte gateway created.
+## 🏗 Architecture
+
+![VPC Architecture](images/architecture.png)
+
+---
+
+## 🛠 Tech Stack
+
+* AWS (VPC, Subnets, IGW, NAT, Route Tables)
+* Terraform (Infrastructure as Code)
+* HCL (HashiCorp Configuration Language)
+
+---
+
+## 📁 Project Structure
+
+```bash id="hy28ni"
+.
+├── main.tf          # Core infrastructure resources  
+├── variables.tf     # Input variables  
+├── outputs.tf       # Output values  
+├── data.tf          # Data sources  
+├── locals.tf        # Local variables  
+├── peering.tf       # VPC peering configuration  
+├── .gitignore  
+├── images/          # Architecture diagrams  
+```
+
+---
+
+## 🚀 Infrastructure Components
+
+### 🌐 Networking
+
+* Custom VPC
+* CIDR block configuration
+* DNS support enabled
+
+### 🌍 Subnets
+
+* Public subnets (for internet-facing resources)
+* Private subnets (for application layer)
+* Database subnets (isolated layer)
+
+### 🔌 Connectivity
+
+* Internet Gateway (IGW)
+* NAT Gateway (for private subnet outbound access)
+
+### 🛣 Routing
+
+* Public Route Table → IGW
+* Private Route Table → NAT
+* Database Route Table
+
+### 🔗 VPC Peering
+
+* Connectivity between custom VPC and default VPC
+
+---
+
+## ⚙️ How to Use
+
+### Step 1: Initialize Terraform
+
+```bash id="mib7og"
+terraform init
+```
+
+### Step 2: Validate Configuration
+
+```bash id="0xssub"
+terraform validate
+```
+
+### Step 3: Plan Infrastructure
+
+```bash id="s7r6je"
+terraform plan
+```
+
+### Step 4: Apply Infrastructure
+
+```bash id="7r4plg"
+terraform apply
+```
+
+### Step 5: Destroy (Cleanup)
+
+```bash id="r9r4i2"
+terraform destroy
+```
+
+---
+
+## 🔐 Best Practices Implemented
+
+* Modular and reusable code structure
+* Separation of variables and outputs
+* Use of locals for dynamic values
+* High availability across multiple AZs
+* Secure network segmentation
+
+---
+
+## 💼 Real-World Use Case
+
+This project demonstrates how to:
+
+* Design scalable AWS networking architecture
+* Deploy production-ready infrastructure using Terraform
+* Implement secure and isolated environments
+* Enable communication between VPCs
+
+---
+
+## 📊 Future Enhancements
+
+* Convert into reusable Terraform module
+* Add EKS cluster provisioning
+* Integrate CI/CD pipeline (GitHub Actions)
+* Add remote backend (S3 + DynamoDB)
+
+---
+
+## 👨‍💻 Author
+
+Santhosh Gurujupalli
